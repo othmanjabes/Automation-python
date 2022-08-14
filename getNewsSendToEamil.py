@@ -14,7 +14,6 @@ now = datetime.datetime.now()
 # email content placeholder
 content = ''
 
-
 #extracting Hacker News Stories
 def extract_news(url):
     print('Extracting Hacker News Stories...')
@@ -24,7 +23,8 @@ def extract_news(url):
     content = response.content
     soup = BeautifulSoup(content,'html.parser')
     for i,tag in enumerate(soup.find_all('td',attrs={'class':'title','valign':''})):
-        cnt += ((str(i+1)+' :: '+ '<a href="' + tag.a.get('href') + '">' + tag.text + '</a>' + "\n" + '<br>') if tag.text!='More' else '')
+        cnt += ((str(i+1)+' :: '+ '<a href="' + tag.a.get('href') + '">' + tag.text + '</a>' + "\n" + '<br>') 
+        if tag.text!='More' else '')
         #print(tag.prettify) #find_all('span',attrs={'class':'sitestr'}))
     return(cnt)
     
